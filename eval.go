@@ -24,7 +24,7 @@ func (s *stackf) Pop() float64 {
 
 // eval evaluates a list of tokens in RPN.
 func eval(rpn []token, vars map[string]interface{}) (float64, error) {
-	stk := make(stackf, 0)
+	var stk stackf
 	for _, t := range rpn {
 		switch t := t.(type) {
 		case number:

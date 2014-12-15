@@ -57,8 +57,7 @@ func (s stack) Top() token {
 
 // postfix rearranges tokens into RPN using the shunting-yard algorithm.
 func postfix(tokens []token, vars map[string]interface{}) ([]token, error) {
-	out := make(stack, 0)
-	stk := make(stack, 0)
+	var out, stk stack
 	for i, t := range tokens {
 		switch t := t.(type) {
 		case number:
