@@ -105,9 +105,11 @@ func postfix(tokens []token, vars map[string]interface{}) ([]token, error) {
 			}
 			stk.Push(t)
 		case parenClose:
-			switch tokens[i-1].(type) {
-			case separator:
-				return nil, fmt.Errorf("calc: bad comma")
+			if i > 0 {
+				switch tokens[i-1].(type) {
+				case separator:
+					return nil, fmt.Errorf("calc: bad comma")
+				}
 			}
 			for {
 				o := stk.Pop()
