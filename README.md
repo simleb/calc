@@ -2,6 +2,7 @@
 
 [![GoDoc](https://godoc.org/github.com/simleb/calc?status.svg)](http://godoc.org/github.com/simleb/calc)
 [![Coverage Status](https://img.shields.io/coveralls/simleb/calc.svg)](https://coveralls.io/r/simleb/calc)
+[![Build Status](https://drone.io/github.com/simleb/calc/status.png)](https://drone.io/github.com/simleb/calc/latest)
 
 Package `calc` parses and evaluates mathematical expressions.
 
