@@ -8,7 +8,7 @@ import (
 // A token is a unit of lexical analysis.
 type token interface{}
 
-// The following types are specialized token:
+// The following types are specialized tokens:
 
 // A number is a floating point number token.
 type number float64

@@ -46,7 +46,7 @@ func (s *stack) Pop() token {
 	return t
 }
 
-// Top returns the top element from the stack without poping.
+// Top returns the top element from the stack without popping.
 func (s stack) Top() token {
 	n := len(s)
 	if n == 0 {
@@ -55,7 +55,7 @@ func (s stack) Top() token {
 	return s[n-1]
 }
 
-// postfix rearrange tokens into RPN using the shunting-yard algorithm.
+// postfix rearranges tokens into RPN using the shunting-yard algorithm.
 func postfix(tokens []token, vars map[string]interface{}) ([]token, error) {
 	out := make(stack, 0)
 	stk := make(stack, 0)
@@ -147,6 +147,7 @@ func postfix(tokens []token, vars map[string]interface{}) ([]token, error) {
 	return out, nil
 }
 
+// handleOperator updates the stacks with a new operator.
 func handleOperator(t operator, stk, out *stack) {
 	for {
 		o := stk.Top()
