@@ -3,6 +3,7 @@ package calc
 import (
 	"regexp"
 	"strconv"
+	"unicode"
 )
 
 // A token is a unit of lexical analysis.
@@ -34,7 +35,7 @@ type separator struct{}
 // These regexps match number and ident tokens respectively.
 var (
 	numberPattern = regexp.MustCompile(`^(\d+(\.\d*)?|\.\d+?)([eE][-+]?\d+)?`)
-	identPattern  = regexp.MustCompile(`^[a-zA-Z][\w.-]*`)
+	identPattern  = regexp.MustCompile(`^[\p{L}_][\p{L}_\p{Nd}.]*`)
 )
 
 // tokenize splits an expression into tokens.
@@ -49,12 +50,12 @@ func tokenize(exp string) ([]token, error) {
 		}
 
 		// Skip whitespace
-		if isSpace(r) {
+		if unicode.IsSpace(r) {
 			continue
 		}
 
 		// Scan identifiers
-		if isLetter(r) {
+		if unicode.IsLetter(r) || r == '_' {
 			m := identPattern.FindString(exp[i:])
 			tokens = append(tokens, ident(m))
 			skip = len([]rune(m)) - 1
@@ -62,7 +63,7 @@ func tokenize(exp string) ([]token, error) {
 		}
 
 		// Scan numbers
-		if isDigit(r) || r == '.' {
+		if r >= '0' && r <= '9' || r == '.' {
 			m := numberPattern.FindString(exp[i:])
 			x, err := strconv.ParseFloat(m, 64)
 			if err != nil {
@@ -107,19 +108,4 @@ func tokenize(exp string) ([]token, error) {
 		}
 	}
 	return tokens, nil
-}
-
-// isSpace check if the rune is an ASCII whitespace.
-func isSpace(r rune) bool {
-	return r == ' ' || r == '\t'
-}
-
-// isLetter check if the rune is an ASCII letter.
-func isLetter(r rune) bool {
-	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z')
-}
-
-// isDigit check if the rune is an ASCII digit.
-func isDigit(r rune) bool {
-	return r >= '0' && r <= '9'
 }

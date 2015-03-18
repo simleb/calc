@@ -111,7 +111,7 @@ var bad = []string{
 
 // vars is a list of variables and functions used in some tests.
 var vars = map[string]interface{}{
-	"pi":   3.14,
+	"π":    3.14,
 	"life": 42,
 	"inc": func(x float64) float64 {
 		return x + 1
@@ -126,10 +126,10 @@ var vgood = []struct {
 	exp string
 	res float64
 }{
-	{"pi", 3.14},
-	{"2*pi", 6.28},
-	{"2pi", 6.28},
-	{"1/2pi", 1 / 6.28},
+	{"π", 3.14},
+	{"2*π", 6.28},
+	{"2π", 6.28},
+	{"1/2π", 1 / 6.28},
 	{"life/4", 10.5},
 	{"inc(1)", 2},
 	{"inc(-2+2)", 1},

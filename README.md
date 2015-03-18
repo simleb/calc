@@ -34,7 +34,7 @@ fmt.Println(x)
 - [x] allow unary minus
 - [x] add modulus operator (`%`)
 - [x] allow `2x` notation for `2*x` (and `2(…)` for `2*(…)`)
-- [ ] allow unicode identifiers
+- [x] allow unicode identifiers
 - [ ] add typical math functions (sqrt, trigo, abs, min, max…)
 
 ## License
