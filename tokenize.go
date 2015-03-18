@@ -80,12 +80,11 @@ func tokenize(exp string) ([]token, error) {
 				if len(tokens) == 0 {
 					tokens = append(tokens, unary(r))
 					continue
-				} else {
-					switch tokens[len(tokens)-1].(type) {
-					case parenOpen, separator, operator, unary:
-						tokens = append(tokens, unary(r))
-						continue
-					}
+				}
+				switch tokens[len(tokens)-1].(type) {
+				case parenOpen, separator, operator, unary:
+					tokens = append(tokens, unary(r))
+					continue
 				}
 			}
 			tokens = append(tokens, operator(r))
